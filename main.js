@@ -18,12 +18,15 @@ app.on('window-all-closed', function() {
   if (process.platform != 'darwin')
     app.quit();
 });
-console.log("test");
 
 app.setPath("userData", __dirname + "/saved_recordings");
 
 app.on('ready', function() {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    'title-bar-style': 'hidden'
+  });
 
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
@@ -72,9 +75,9 @@ ipc.on("activeSources", function(event, sources) {
     //console.log(windows);
 
     sources.forEach((source, index) => {
-      if (windows[source.id]) {
+      /*if (windows[source.id]) {
         console.log(windows[source.id]);
-      }/*
+      }*/
         if (!timeline[source.id]) {
         timeline[source.id] = {
           name: source.name,
@@ -92,9 +95,10 @@ ipc.on("activeSources", function(event, sources) {
       }
       if (index == 1) {
         timeline[source.id].activeTime++;
-      }*/
+      }
     });
     //console.log(timeline);
+    mainWindow.webContents.send("timeline", timeline);
 
   });
 

@@ -1,13 +1,139 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>TimeTrakkr</title>
+    <title>TimeTrakkr</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="node_modules/photon/dist/css/photon.css">
+
+    <!-- Electron Javascript -->
+    <script src="app.js" charset="utf-8"></script>
 </head>
+
 <body>
 
-Do not close this window.
+<div class="window">
+    <header class="toolbar toolbar-header">
+        <h1 class="title">TimeTrakkr</h1>
 
-Will capture open windows every second and print it to the terminal.
+        <div class="toolbar-actions">
+            <button class="btn btn-default btn-large" onclick="newWindow()">
+                <span class="icon icon-clock icon-text"></span>
+                Start Tracking
+            </button>
 
-<script src="app.js"></script>
+
+            <div class="btn-group">
+                <button class="btn btn-default btn-large" onclick="graphPlugin.showLess()">
+                    <span class="icon icon-minus"></span>
+                    <!-- Show Less -->
+                </button>
+                <!-- icon-text -->
+                <!-- icon-down-circled icon-up-circled icon-down icon-progress-2 icon-progress-1 -squared -circled -->
+                <button class="btn btn-default btn-large" onclick="graphPlugin.showMore()">
+                    <span class="icon icon-plus"></span>
+                    <!-- Show More -->
+                </button>
+            </div>
+
+            <button class="btn btn-default btn-large" onclick="graphPlugin.navigateUp()">
+                <span class="icon icon-up-circled"></span>
+            </button>
+
+
+            <!--       <button class="btn btn-default btn-dropdown pull-right btn-large">
+                    <span class="icon icon-cd"></span>
+                  </button> -->
+
+            <!-- Large button group -->
+
+            <div class="btn-group pull-right">
+                <button class="btn btn-large btn-default active" id="sunburst_button" onclick="showSunburst()">
+                    <span class="icon icon-cd"></span> <!-- icon-cd  icon-chart-pie icon-database icon-rss"-->
+                </button>
+
+                <button class="btn btn-default btn-large" id="treemap_button" onclick="showTreemap()">
+                    <span class="icon icon-layout"></span> <!-- icon-map  icon-layout icon-sweden -->
+                </button>
+            </div>
+            <div></div> <!-- thin padding -->
+        </div>
+    </header>
+
+    <div class="window-content">
+        <div class="pane-group">
+            <div class="pane-sm sidebar">
+                <nav class="nav-group">
+                    <h5 class="nav-group-title">Favorites</h5>
+                    <a class="nav-group-item active">
+                        <span class="icon icon-home"></span>
+                        Overview
+                    </a>
+                </nav>
+                <nav class="nav-group">
+                    <h5 class="nav-group-title">Projects</h5>
+                <span class="nav-group-item" href="#">
+                    <span class="icon icon-record" style="color:#fc605b"></span>
+                    Red
+                  </span>
+                <span class="nav-group-item" href="#">
+                    <span class="icon icon-record" style="color:#fdbc40"></span>
+                    Orange
+                  </span>
+                <span class="nav-group-item" href="#">
+                    <span class="icon icon-record" style="color:#34c84a"></span>
+                    Green
+                  </span>
+                <span class="nav-group-item" href="#">
+                    <span class="icon icon-record" style="color:#57acf5"></span>
+                    Blue
+                  </span>
+            </div>
+            <div class="pane">
+                <table id="timeline" class="table-striped">
+                    <thead>
+                    <tr>
+                        <th>App Name</th>
+                        <th>Window Name</th>
+                        <th>Time Active</th>
+                        <th>Time Background</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>No entries</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions">
+            <div class="btn-group">
+                <button class="btn btn-default" onclick="navigateBack()">
+                    <span class="icon icon-left-bold"></span>
+                    <!-- icon-left-bold icon-left-circled icon-left -->
+                </button>
+                <button class="btn btn-default" onclick="navigateForward()">
+                    <span class="icon icon-right-bold"></span>
+                </button>
+            </div>
+
+            <span id="bottom_status" style="font-size:11px; padding-left: 8px">Made with &hearts; by TimeTrakkr</span>
+            <button class="btn btn-default pull-right" id="dir_opener" onclick="openDirectory()">Locate Directory</button>
+
+        </div>
+    </footer>
+</div>
+
 </body>
 </html>
