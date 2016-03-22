@@ -1,0 +1,12 @@
+{
+  "name": "TimeTrakkr",
+  "version": "0.0.1",
+  "main": "main.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron ./"
+  },
+  "dependencies": {
+    "electron-prebuilt": "^0.37.2",
+    "python-shell": "^0.4.0"
+  }
+}
