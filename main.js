@@ -43,6 +43,7 @@ let timeline = {};
 ipc.on("activeSources", function(event, sources) {
 
   let windows = [];
+
   PythonShell.run('python-modules/lswin.py', function (err, data) {
     if (err) throw err;
 

@@ -60,4 +60,5 @@ ipc.on("timeline", function(event, data) {
 
 setInterval(() => {
   getSources();
-}, 1000);
+}, 5000);
+getSources();
